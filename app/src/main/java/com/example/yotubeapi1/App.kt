@@ -1,14 +1,18 @@
 package com.example.yotubeapi1
 
 import android.app.Application
-import com.example.yotubeapi1.repository.Repository
+import com.example.yotubeapi1.di.koinModules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class App: Application() {
 
-    companion object {
+    override fun onCreate() {
+        super.onCreate()
 
-        val repository: Repository by lazy {
-            Repository()
+        startKoin {
+            androidContext(this@App)
+            modules(koinModules)
         }
     }
 }

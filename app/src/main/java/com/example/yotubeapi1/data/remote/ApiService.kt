@@ -24,4 +24,11 @@ interface ApiService {
         @Query("maxResults") maxResults: Int = 20
     ): Response<Playlists>
 
+    @GET("getVideo")
+    suspend fun getVideo(
+        @Query("key") key: String,
+        @Query("part") part: String,
+        @Query("id") id: String,
+    ): Response<Playlists>
+
 }

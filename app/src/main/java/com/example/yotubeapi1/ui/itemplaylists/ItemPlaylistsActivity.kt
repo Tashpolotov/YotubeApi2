@@ -3,8 +3,8 @@ package com.example.yotubeapi1.ui.itemplaylists
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import com.example.yotubeapi1.core.ui.BaseActivity
 import com.example.yotubeapi1.databinding.ActivityItemPlaylistsBinding
 import com.example.yotubeapi1.ui.itemplaylists.adapter.AdapterItemPlaylists
@@ -13,12 +13,11 @@ import com.example.yotubeapi1.ui.videolists.VideoPlaylists
 import com.example.yotubeapi1.utils.InternetConnection
 
 class ItemPlaylistsActivity : BaseActivity<ItemViewModel, ActivityItemPlaylistsBinding>() {
+    override val viewModel: ItemViewModel by viewModel()
+
     private lateinit var adapter: AdapterItemPlaylists
     private lateinit var internetConnection: InternetConnection
 
-    override val viewModel: ItemViewModel by lazy {
-        ViewModelProvider(this)[ItemViewModel::class.java]
-    }
 
     override fun inflateViewBinding(inflater: LayoutInflater): ActivityItemPlaylistsBinding {
         return ActivityItemPlaylistsBinding.inflate(layoutInflater)
@@ -48,6 +47,8 @@ class ItemPlaylistsActivity : BaseActivity<ItemViewModel, ActivityItemPlaylistsB
             adapter = AdapterItemPlaylists {
                 val intent = Intent(this, VideoPlaylists::class.java)
                 intent.putExtra(KEY, it.id)
+                intent.putExtra(KEY_TITLE, it.snippet.title)
+                intent.putExtra(KEY_DESC, it.snippet.description)
                 startActivity(intent)
 
             }
@@ -70,5 +71,7 @@ class ItemPlaylistsActivity : BaseActivity<ItemViewModel, ActivityItemPlaylistsB
 
     companion object{
         const val KEY="next"
+        const val KEY_DESC = "desc"
+        const val KEY_TITLE = "title"
     }
 }

@@ -45,6 +45,13 @@ dependencies {
 
     def exoPlayerVersion = "2.8.4"
 
+    def koin_version = "2.2.2"
+
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
+
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -67,7 +74,11 @@ dependencies {
 // Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
-    // зависимость для экзоплеера
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.0'
+    //exoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.4'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.4'
+
 
 }
